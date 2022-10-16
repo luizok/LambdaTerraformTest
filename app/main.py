@@ -1,8 +1,3 @@
-def main_function(a, b):
+def lambda_handler(event, context):
 
-    return a + b
-
-
-def test_func():
-
-    assert True
+    return sum(event['numbers'])

@@ -3,4 +3,6 @@
 __pycache__
 .pytest_cache/
 .vscode/
-terraform.tfstate
+terraform.tfstate*
+out/
+!out/.gitkeep

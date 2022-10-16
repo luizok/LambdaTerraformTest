@@ -1,16 +1,16 @@
 import unittest
 
-from main import main_function
+from main import lambda_handler
 
 
 class MainTest(unittest.TestCase):
 
-    def test_main_function_success(self):
+    def test_lambda_handler_success(self):
 
-        res = main_function(1, 2)
+        res = lambda_handler({'numbers': [1, 2]}, None)
         self.assertEqual(res, 3)
 
-    def test_main_function_fail(self):
+    def test_lambda_handler_fail(self):
 
-        res = main_function(1, 2)
-        self.assertNotEqual(res, 2)
+        res = lambda_handler({'numbers': [-1, 1]}, None)
+        self.assertNotEqual(res, 1)
