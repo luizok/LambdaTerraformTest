@@ -13,7 +13,7 @@ data "archive_file" "init" {
 }
 
 resource "aws_iam_role" "iam_for_lambda" {
-  name = "tf_lambda_role"
+  name = "tf_${var.project_name}_role"
 
   assume_role_policy = <<EOF
 {
@@ -35,7 +35,7 @@ EOF
 resource "aws_lambda_function" "tf_test_lambda" {
 
   filename      = data.archive_file.init.output_path
-  function_name = "tf_test_lambda"
+  function_name = "tf_${var.project_name}"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "main.lambda_handler"
 
