@@ -1,0 +1,6 @@
+.env
+.terraform*
+__pycache__
+.pytest_cache/
+.vscode/
+terraform.tfstate
