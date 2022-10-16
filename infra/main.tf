@@ -1,3 +1,11 @@
+terraform {
+  backend "s3" {
+    bucket = "luizok-terraform-deploy"
+    key    = "tf_lambda.tfstate"
+    region = "sa-east-1"
+  }
+}
+
 data "archive_file" "init" {
   type        = "zip"
   source_dir  = "../app"
@@ -35,9 +43,9 @@ resource "aws_lambda_function" "tf_test_lambda" {
 
   runtime = "python3.9"
 
-  timeout = 2  # Secs
+  timeout = 2 # Secs
 
   ephemeral_storage {
-    size = 512  # MB
+    size = 512 # MB
   }
 }
