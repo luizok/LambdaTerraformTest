@@ -4,6 +4,9 @@ tf_cmd = terraform -chdir=$(infra_path)
 init:
 	$(tf_cmd) init
 
+reinit:
+	$(tf_cmd) init -reconfigure
+
 deploy:
 	$(tf_cmd) fmt
 	$(tf_cmd) validate
