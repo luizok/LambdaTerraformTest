@@ -14,3 +14,8 @@ class MainTest(unittest.TestCase):
 
         res = lambda_handler({'numbers': [-1, 1]}, None)
         self.assertNotEqual(res, 1)
+
+    def test_lambda_handler_negative_success(self):
+
+        res = lambda_handler({'numbers': [-1, -1]}, None)
+        self.assertEqual(res, -2)
