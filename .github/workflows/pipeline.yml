@@ -53,4 +53,7 @@ jobs:
         terraform -chdir=${{ env.INFRA_DIR }} init
         terraform -chdir=${{ env.INFRA_DIR }} validate
         terraform -chdir=${{ env.INFRA_DIR }} plan
+
+    - name: Terraform Deploy
+      run: terraform -chdir=${{ env.INFRA_DIR }} apply
       
