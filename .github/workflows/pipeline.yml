@@ -55,5 +55,5 @@ jobs:
         terraform -chdir=${{ env.INFRA_DIR }} plan
 
     - name: Terraform Deploy
-      run: terraform -chdir=${{ env.INFRA_DIR }} apply -auto-aprove
+      run: terraform -chdir=${{ env.INFRA_DIR }} apply -auto-approve
       
