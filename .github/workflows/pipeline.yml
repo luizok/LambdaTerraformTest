@@ -47,7 +47,7 @@ jobs:
     
     - name: Terraform Plan
       run: |
-        terraform init     -chdir=${{ env.INFRA_DIR }}
-        terraform validate -chdir=${{ env.INFRA_DIR }}
-        terraform plan     -chdir=${{ env.INFRA_DIR }}
+        terraform -chdir=${{ env.INFRA_DIR }} init
+        terraform -chdir=${{ env.INFRA_DIR }} validate
+        terraform -chdir=${{ env.INFRA_DIR }} plan
       
