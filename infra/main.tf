@@ -15,21 +15,7 @@ data "archive_file" "init" {
 resource "aws_iam_role" "iam_for_lambda" {
   name = "tf_${var.project_name}_role"
 
-  assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "lambda.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-EOF
+  assume_role_policy = file("./policy.json")
 }
 
 resource "aws_lambda_function" "tf_test_lambda" {
