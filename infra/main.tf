@@ -45,5 +45,5 @@ resource "aws_lambda_function" "tf_test_lambda" {
 resource "aws_sfn_state_machine" "stepfunction" {
   name       = "tf_first_sfn"
   role_arn   = aws_iam_role.iam_for_stepfunc.arn
-  definition = file("./stepfunc_def.json")
+  definition = replace(file("./stepfunc_def.json"), "<FUNC_NAME>", aws_lambda_function.tf_test_lambda.arn)
 }

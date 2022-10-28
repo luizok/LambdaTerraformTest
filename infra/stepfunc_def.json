@@ -23,7 +23,8 @@
             "Resource": "arn:aws:states:::lambda:invoke",
             "OutputPath": "$.Payload",
             "Parameters": {
-                "Payload.$": "$"
+                "Payload.$": "$",
+                "FunctionName": "<FUNC_NAME>"
             },
             "Retry": [
                 {
@@ -44,7 +45,8 @@
             "Resource": "arn:aws:states:::lambda:invoke",
             "OutputPath": "$.Payload",
             "Parameters": {
-                "Payload.$": "$"
+                "Payload.$": "$",
+                "FunctionName": "<FUNC_NAME>"
             },
             "Retry": [
                 {
@@ -71,7 +73,8 @@
                             "Resource": "arn:aws:states:::lambda:invoke",
                             "OutputPath": "$.Payload",
                             "Parameters": {
-                                "Payload.$": "$"
+                                "Payload.$": "$",
+                                "FunctionName": "<FUNC_NAME>"
                             },
                             "Retry": [
                                 {
@@ -97,7 +100,8 @@
                             "Resource": "arn:aws:states:::lambda:invoke",
                             "OutputPath": "$.Payload",
                             "Parameters": {
-                                "Payload.$": "$"
+                                "Payload.$": "$",
+                                "FunctionName": "<FUNC_NAME>"
                             },
                             "Retry": [
                                 {
@@ -123,7 +127,8 @@
             "Resource": "arn:aws:states:::lambda:invoke",
             "OutputPath": "$.Payload",
             "Parameters": {
-                "Payload.$": "$"
+                "Payload.$": "$",
+                "FunctionName": "<FUNC_NAME>"
             },
             "Retry": [
                 {
@@ -150,7 +155,8 @@
                             "Resource": "arn:aws:states:::lambda:invoke",
                             "OutputPath": "$.Payload",
                             "Parameters": {
-                                "Payload.$": "$"
+                                "Payload.$": "$",
+                                "FunctionName": "<FUNC_NAME>"
                             },
                             "Retry": [
                                 {
@@ -176,7 +182,8 @@
                             "Resource": "arn:aws:states:::lambda:invoke",
                             "OutputPath": "$.Payload",
                             "Parameters": {
-                                "Payload.$": "$"
+                                "Payload.$": "$",
+                                "FunctionName": "<FUNC_NAME>"
                             },
                             "Retry": [
                                 {
@@ -202,7 +209,8 @@
                             "Resource": "arn:aws:states:::lambda:invoke",
                             "OutputPath": "$.Payload",
                             "Parameters": {
-                                "Payload.$": "$"
+                                "Payload.$": "$",
+                                "FunctionName": "<FUNC_NAME>"
                             },
                             "Retry": [
                                 {
@@ -228,7 +236,8 @@
             "Resource": "arn:aws:states:::lambda:invoke",
             "OutputPath": "$.Payload",
             "Parameters": {
-                "Payload.$": "$"
+                "Payload.$": "$",
+                "FunctionName": "<FUNC_NAME>"
             },
             "Retry": [
                 {
