@@ -15,7 +15,13 @@ data "archive_file" "init" {
 resource "aws_iam_role" "iam_for_lambda" {
   name = "tf_${var.project_name}_role"
 
-  assume_role_policy = file("./policy.json")
+  assume_role_policy = file("./policy_lambda.json")
+}
+
+resource "aws_iam_role" "iam_for_stepfunc" {
+  name = "tf_${var.project_name}_stepfunc_role"
+
+  assume_role_policy = file("./policy_sfn.json")
 }
 
 resource "aws_lambda_function" "tf_test_lambda" {
@@ -34,4 +40,10 @@ resource "aws_lambda_function" "tf_test_lambda" {
   ephemeral_storage {
     size = 512 # MB
   }
+}
+
+resource "aws_sfn_state_machine" "stepfunction" {
+  name       = "tf_first_sfn"
+  role_arn   = aws_iam_role.iam_for_stepfunc.arn
+  definition = file("./stepfunc_def.json")
 }

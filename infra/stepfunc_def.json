@@ -1,0 +1,248 @@
+{
+    "Comment": "A description of my state machine",
+    "StartAt": "Choice",
+    "States": {
+        "Choice": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$.files.file_a",
+                    "StringEquals": "assunto_1",
+                    "Next": "Parallel"
+                },
+                {
+                    "Variable": "$.files.fila_b",
+                    "StringEquals": "assunto_b",
+                    "Next": "Parallel (2)"
+                }
+            ],
+            "Default": "Error"
+        },
+        "Error": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "OutputPath": "$.Payload",
+            "Parameters": {
+                "Payload.$": "$"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
+            "Next": "SendEmail"
+        },
+        "SendEmail": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "OutputPath": "$.Payload",
+            "Parameters": {
+                "Payload.$": "$"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
+            "End": true
+        },
+        "Parallel": {
+            "Type": "Parallel",
+            "Branches": [
+                {
+                    "StartAt": "Lambda Invoke (1)",
+                    "States": {
+                        "Lambda Invoke (1)": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:states:::lambda:invoke",
+                            "OutputPath": "$.Payload",
+                            "Parameters": {
+                                "Payload.$": "$"
+                            },
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "Lambda.ServiceException",
+                                        "Lambda.AWSLambdaException",
+                                        "Lambda.SdkClientException"
+                                    ],
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 6,
+                                    "BackoffRate": 2
+                                }
+                            ],
+                            "End": true
+                        }
+                    }
+                },
+                {
+                    "StartAt": "Lambda Invoke (2)",
+                    "States": {
+                        "Lambda Invoke (2)": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:states:::lambda:invoke",
+                            "OutputPath": "$.Payload",
+                            "Parameters": {
+                                "Payload.$": "$"
+                            },
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "Lambda.ServiceException",
+                                        "Lambda.AWSLambdaException",
+                                        "Lambda.SdkClientException"
+                                    ],
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 6,
+                                    "BackoffRate": 2
+                                }
+                            ],
+                            "End": true
+                        }
+                    }
+                }
+            ],
+            "Next": "Lambda Invoke (7)"
+        },
+        "Lambda Invoke (7)": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "OutputPath": "$.Payload",
+            "Parameters": {
+                "Payload.$": "$"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
+            "End": true
+        },
+        "Parallel (2)": {
+            "Type": "Parallel",
+            "Branches": [
+                {
+                    "StartAt": "Lambda Invoke (3)",
+                    "States": {
+                        "Lambda Invoke (3)": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:states:::lambda:invoke",
+                            "OutputPath": "$.Payload",
+                            "Parameters": {
+                                "Payload.$": "$"
+                            },
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "Lambda.ServiceException",
+                                        "Lambda.AWSLambdaException",
+                                        "Lambda.SdkClientException"
+                                    ],
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 6,
+                                    "BackoffRate": 2
+                                }
+                            ],
+                            "End": true
+                        }
+                    }
+                },
+                {
+                    "StartAt": "Lambda Invoke (5)",
+                    "States": {
+                        "Lambda Invoke (5)": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:states:::lambda:invoke",
+                            "OutputPath": "$.Payload",
+                            "Parameters": {
+                                "Payload.$": "$"
+                            },
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "Lambda.ServiceException",
+                                        "Lambda.AWSLambdaException",
+                                        "Lambda.SdkClientException"
+                                    ],
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 6,
+                                    "BackoffRate": 2
+                                }
+                            ],
+                            "End": true
+                        }
+                    }
+                },
+                {
+                    "StartAt": "Lambda Invoke (4)",
+                    "States": {
+                        "Lambda Invoke (4)": {
+                            "Type": "Task",
+                            "Resource": "arn:aws:states:::lambda:invoke",
+                            "OutputPath": "$.Payload",
+                            "Parameters": {
+                                "Payload.$": "$"
+                            },
+                            "Retry": [
+                                {
+                                    "ErrorEquals": [
+                                        "Lambda.ServiceException",
+                                        "Lambda.AWSLambdaException",
+                                        "Lambda.SdkClientException"
+                                    ],
+                                    "IntervalSeconds": 2,
+                                    "MaxAttempts": 6,
+                                    "BackoffRate": 2
+                                }
+                            ],
+                            "End": true
+                        }
+                    }
+                }
+            ],
+            "Next": "Lambda Invoke (8)"
+        },
+        "Lambda Invoke (8)": {
+            "Type": "Task",
+            "Resource": "arn:aws:states:::lambda:invoke",
+            "OutputPath": "$.Payload",
+            "Parameters": {
+                "Payload.$": "$"
+            },
+            "Retry": [
+                {
+                    "ErrorEquals": [
+                        "Lambda.ServiceException",
+                        "Lambda.AWSLambdaException",
+                        "Lambda.SdkClientException"
+                    ],
+                    "IntervalSeconds": 2,
+                    "MaxAttempts": 6,
+                    "BackoffRate": 2
+                }
+            ],
+            "End": true
+        }
+    }
+}

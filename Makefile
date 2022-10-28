@@ -1,5 +1,5 @@
 infra_path = infra/
-tf_cmd = terraform -chdir=$(infra_path)
+tf_cmd = dotenv run terraform -chdir=$(infra_path)
 
 init:
 	$(tf_cmd) init
@@ -7,9 +7,14 @@ init:
 reinit:
 	$(tf_cmd) init -reconfigure
 
-deploy:
+validate:
 	$(tf_cmd) fmt
 	$(tf_cmd) validate
+
+plan:
+	$(tf_cmd) plan
+
+deploy:
 	$(tf_cmd) apply
 
 clean:
