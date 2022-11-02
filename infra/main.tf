@@ -22,6 +22,24 @@ resource "aws_iam_role" "iam_for_stepfunc" {
   name = "tf_${var.project_name}_stepfunc_role"
 
   assume_role_policy = file("./policy_sfn.json")
+
+  managed_policy_arns = [aws_iam_policy.stepfunc_policy.arn]
+}
+
+resource "aws_iam_policy" "stepfunc_policy" {
+  name = "tf_stepfunc_policy"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+          "Action": ["lambda:InvokeFunction"],
+          "Resource": "arn:aws:lambda:*",
+          "Effect": "Allow"
+      }
+  ]
+}
+EOF
 }
 
 resource "aws_lambda_function" "tf_test_lambda" {
