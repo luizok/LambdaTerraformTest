@@ -39,12 +39,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest pytest-cov mock
         if [ -f app/requirements.txt ]; then
-          pip install -r app/requirements.txt --target ./package;
+          pip install -r app/requirements.txt;
         fi
   
     - name: Lint with flake8
       run: |
-        flake8 --ignore=W504
+        flake8 app/ --ignore=W504
 
     - name: Test with pytest
       run: |
